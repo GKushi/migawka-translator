@@ -7,8 +7,9 @@
 
 body {
   font-family: "Montserrat", "Times New Roman", Times, serif;
-  @apply text-white;
+  @apply text-white bg-white;
 }
 
 // Components
 @import "./components/header.scss";
+@import "./components/about.scss";
