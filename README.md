@@ -1,0 +1,1 @@
+# migawka-translator
