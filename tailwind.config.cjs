@@ -7,10 +7,8 @@ module.exports = {
         white: "#F7FFFE",
         black: "#001412",
         blue: "#0AFFE7",
+        light_blue: "#DAFFFB",
         green: "#00665C",
-      },
-      backgroundImage: {
-        "hero-img": "url('pexels-buro-millennial-1438084 1.png')",
       },
     },
   },

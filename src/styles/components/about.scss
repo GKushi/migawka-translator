@@ -1,7 +1,7 @@
 .about {
-  @apply px-8 py-8 sm:px-16 sm:py-16 bg-white;
+  @apply px-8 py-8 sm:px-16 sm:py-12 bg-white;
   &-content {
-    @apply max-w-screen-2xl mx-auto text-black space-y-10 lg:space-y-40;
+    @apply max-w-screen-2xl mx-auto text-black space-y-10 lg:space-y-28;
     &-top {
       @apply text-center space-y-8 font-semibold flex flex-col items-center;
       h3 {

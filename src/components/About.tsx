@@ -30,7 +30,7 @@ const About: React.FC = () => {
     {
       icon: <ClipboardDocumentCheckIcon className="about-item-icon" />,
       title: "Rozwiązanie realnego problemu",
-      text: "Osoby nieposługujące się językiem migowym mogą mieć trudności podczas komunikacji z osobami głuchymi lub niemymi. Migawka wychodzi tym problemom na przeciw.",
+      text: "Osoby nieposługujące się językiem migowym mogą mieć trudności podczas komunikacji z osobami głuchymi lub niemymi. Migawka wychodzi tym problemom naprzeciw.",
     },
     {
       icon: <PuzzlePieceIcon className="about-item-icon" />,
