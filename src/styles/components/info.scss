@@ -1,0 +1,39 @@
+.info {
+  background: linear-gradient(to top, #dafffb 80%, #f7fffe 0%);
+  @apply flex justify-end mx-auto md:mx-0 p-8 md:p-0 md:bg-none;
+  &-content {
+    @apply md:bg-light_blue text-black flex items-center w-full flex-col md:flex-row md:w-[80%] xl:w-[75%] 2xl:w-[65%] gap-14 xl:gap-20 md:py-20 px-5 max-w-[2000px];
+    &-image-container {
+      @apply md:-ml-[20%] md:w-1/2 max-w-xl;
+    }
+    &-text {
+      @apply md:w-[55%] lg:w-1/2 md:max-w-xl flex flex-col gap-5 xl:gap-8 text-center md:text-left;
+      h3 {
+        @apply text-2xl sm:text-3xl md:text-4xl font-bold;
+      }
+      p {
+        @apply text-lg md:text-xl;
+      }
+      a {
+        @apply flex justify-center items-center font-extrabold text-xs bg-green text-white uppercase w-full md:w-36 h-10;
+      }
+    }
+  }
+}
+
+.info.left {
+  background: linear-gradient(to bottom, #dafffb 30%, #f7fffe 0%);
+  @apply justify-start md:bg-none;
+  .info-content {
+    @apply md:flex-row-reverse;
+    &-image-container {
+      @apply ml-0 md:-mr-[20%];
+    }
+    &-text {
+      @apply md:text-right;
+      a {
+        @apply self-end;
+      }
+    }
+  }
+}

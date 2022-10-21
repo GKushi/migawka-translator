@@ -7,7 +7,7 @@
 
         .st1 {
             fill: none;
-            stroke: #00665C;
+            stroke: #F7FFFE;
             stroke-width: 35;
             stroke-linecap: round;
             stroke-miterlimit: 10;
