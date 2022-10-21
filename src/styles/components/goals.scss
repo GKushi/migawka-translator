@@ -1,0 +1,36 @@
+.goal {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  @apply bg-green w-72 h-20 rounded-sm flex justify-end items-center gap-4;
+  &-icon {
+    @apply w-12;
+  }
+
+  &-text {
+    @apply flex flex-col w-[70%];
+    &-title {
+      @apply text-sm font-semibold;
+    }
+    &-text {
+      @apply text-base;
+    }
+  }
+}
+
+.goals {
+  @apply py-8 sm:px-16 sm:py-16;
+  &-content {
+    @apply flex flex-col items-center gap-8;
+    h3 {
+      @apply text-black font-bold text-2xl sm:text-3xl md:text-4xl;
+    }
+    &-mobile {
+      @apply sm:hidden w-full h-20;
+      .goal {
+        @apply mx-auto;
+      }
+    }
+    &-desktop {
+      @apply hidden sm:grid grid-rows-2 xl:grid-rows-1 grid-flow-col gap-5 md:gap-8 2xl:gap-10;
+    }
+  }
+}

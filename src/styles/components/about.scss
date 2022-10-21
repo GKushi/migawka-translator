@@ -16,7 +16,7 @@
         @apply flex flex-col lg:flex-row justify-center lg:justify-around items-center lg:items-start gap-10;
         .about-item {
           @apply flex flex-col items-center text-center max-w-xs gap-1;
-          .about-item-icon-container {
+          &-icon-container {
             @apply w-16 h-16 rounded-full bg-green flex justify-center items-center text-white;
             .about-item-icon {
               @apply w-9;

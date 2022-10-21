@@ -54,8 +54,8 @@ const About: React.FC = () => {
         </div>
         <div className="about-content-bottom">
           <div className="about-items">
-            {items.map((it) => (
-              <AboutItem {...it} />
+            {items.map((it, index) => (
+              <AboutItem {...it} key={index} />
             ))}
           </div>
         </div>
