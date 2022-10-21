@@ -1,0 +1,9 @@
+footer {
+  @apply bg-green text-center p-8;
+  h2 {
+    @apply font-black text-3xl tracking-wider mb-4;
+  }
+  span {
+    @apply block;
+  }
+}

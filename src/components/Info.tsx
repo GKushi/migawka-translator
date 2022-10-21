@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 export interface InfoProps {
   orientation: "left" | "right";
   title: JSX.Element;
@@ -20,7 +22,9 @@ const Info: React.FC<InfoProps> = ({
         <div className="info-content-text">
           {title}
           {text}
-          <a>Zacznij migać</a>
+          <Link href="/translator">
+            <a>Zacznij migać</a>
+          </Link>
         </div>
       </div>
     </div>

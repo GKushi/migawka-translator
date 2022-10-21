@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import About from "@/components/About";
 import Goals from "@/components/Goals";
 import Info from "@/components/Info";
+import Footer from "@/components/Footer";
 import type { InfoProps } from "@/components/Info";
 
 const Home: React.FC = () => {
@@ -48,13 +49,13 @@ const Home: React.FC = () => {
       <main>
         <About />
         <Goals />
-        <div className="md:space-y-24 my-16">
+        <div className="md:space-y-24 my-12">
           {infoItems.map((it) => (
             <Info {...it} />
           ))}
         </div>
-        <div className="h-[1000px]" />
       </main>
+      <Footer />
     </>
   );
 };
