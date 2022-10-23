@@ -13,9 +13,15 @@
       @apply text-xl font-semibold text-center;
     }
     &-output {
-      @apply flex-1 border shadow-inner;
+      @apply flex-1 border shadow-inner relative flex flex-col justify-end;
       &-placeholder {
-        @apply text-gray-500 text-sm;
+        @apply text-gray-500 text-sm absolute top-0 left-0;
+      }
+      &-loading {
+        @apply w-20 h-20 mx-auto;
+      }
+      &-response {
+        @apply text-black text-xl;
       }
     }
     &-controls {

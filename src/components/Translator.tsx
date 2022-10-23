@@ -1,5 +1,6 @@
-import Webcam from "react-webcam";
 import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
+import Webcam from "react-webcam";
+import { ColorRing } from "react-loader-spinner";
 import {
   PlayCircleIcon,
   PauseCircleIcon,
@@ -14,9 +15,13 @@ interface TranslatorProps {
 const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
   const webcamRef = useRef<Webcam | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const TimeoutRef = useRef<number | null>(null);
+
   const [capturing, setCapturing] = useState<boolean>(false);
   const [recordedChunks, setRecordedChunks] = useState<Blob | undefined>();
   const [faceCamera, setFaceCamera] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<string[] | undefined>();
 
   const handleStartCaptureClick = useCallback(() => {
     if (!webcamRef.current?.stream || recordedChunks) return;
@@ -29,7 +34,7 @@ const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
       handleDataAvailable
     );
     mediaRecorderRef.current.start();
-    setTimeout(handleStopCaptureClick, 10000);
+    TimeoutRef.current = setTimeout(handleStopCaptureClick, 10000);
   }, [webcamRef, setCapturing, mediaRecorderRef]);
 
   const handleDataAvailable = useCallback(
@@ -46,25 +51,31 @@ const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
       mediaRecorderRef.current.state === "inactive"
     )
       return;
+    if (TimeoutRef.current) clearTimeout(TimeoutRef.current);
     mediaRecorderRef.current.stop();
     setCapturing(false);
   }, [mediaRecorderRef, webcamRef, setCapturing]);
 
   const sendBlob = useCallback(async () => {
-    if (!recordedChunks) return;
+    if (!recordedChunks || loading) return;
+
+    setLoading(true);
     const blob = new Blob([recordedChunks], {
       type: "video/webm",
     });
     let data = new FormData();
-    data.append("file", blob);
+    data.append("file", blob, "file.webm");
     await fetch(import.meta.env.VITE_API_ENDPOINT, {
       method: "POST",
       body: data,
     })
       .then((r) => {
-        r.json();
+        return r.json();
       })
-      .then((r) => console.log(r));
+      .then((r) => {
+        setResponse(r.preds);
+      });
+    setLoading(false);
     setRecordedChunks(undefined);
   }, [recordedChunks]);
 
@@ -92,11 +103,11 @@ const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
         />
       </div>
       <div className="webcam-panel">
-        <h2>Rozpocznij pokazywanie gestów</h2>
+        <h2>Włącz nagrywanie i rozpocznij pokazywanie gestów</h2>
         <div className="webcam-panel-output">
           <p className="webcam-panel-output-placeholder">
-            Odczytane wyrazy pojawią się poniżej. Część obsługiwanych gestów
-            znajdziesz{" "}
+            Odczytane wyrazy pojawią się poniżej. Instrukcję oraz część
+            obsługiwanych gestów znajdziesz{" "}
             <span
               className="text-green underline cursor-pointer"
               onClick={() => setOpenModal(true)}
@@ -104,6 +115,22 @@ const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
               tutaj.
             </span>
           </p>
+          <ColorRing
+            visible={loading}
+            wrapperClass="webcam-panel-output-loading"
+            colors={["#00665C", "#00665C", "#00665C", "#00665C", "#00665C"]}
+          />
+          <div className="webcam-panel-output-response">
+            {response &&
+              response.map((res, index) => (
+                <span className="block" key={index}>
+                  {res}
+                </span>
+              ))}
+            {response && response.length === 0 && (
+              <span>Nie wykryto żadnego gestu!</span>
+            )}
+          </div>
         </div>
         <div className="webcam-panel-controls">
           <PlayCircleIcon
@@ -123,7 +150,7 @@ const Translator: React.FC<TranslatorProps> = ({ setOpenModal }) => {
             onClick={changeCamera}
           />
           <button
-            className={`${recordedChunks && "active"}`}
+            className={`${recordedChunks && !loading && "active"}`}
             onClick={sendBlob}
           >
             Analizuj

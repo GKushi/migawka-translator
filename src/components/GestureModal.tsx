@@ -13,9 +13,9 @@ const GestureModal: React.FC<GestureModalProps> = ({
 }) => {
   const gestures = [
     { desc: "Cześć! - Prosta ręka, 5 palców prosto", image: "/1f590.svg" },
-    { desc: "Tak - Zaciśnięta pięść, 5 palców zgięte", image: "/1f44a.svg" },
+    { desc: "Tak! - Zaciśnięta pięść, 5 palców zgięte", image: "/1f44a.svg" },
     {
-      desc: "Nie - Kciuk, palec wskazujący i środkowy prosto, wskazujący i środkowy razem, serdeczny i mały zgięte",
+      desc: "Nie! - Kciuk, palec wskazujący i środkowy prosto, wskazujący i środkowy razem, serdeczny i mały zgięte",
       image: "/pinch-svg.svg",
     },
     {
@@ -23,7 +23,7 @@ const GestureModal: React.FC<GestureModalProps> = ({
       image: "/1f91f.svg",
     },
     {
-      desc: "Dziękuję - Obie dłonie otwarte, dotykają ust z obu stron",
+      desc: "Dziękuję! - Obie dłonie otwarte, dotykają ust z obu stron",
       image: "/dotykanie_ust.svg",
     },
   ];
@@ -61,7 +61,7 @@ const GestureModal: React.FC<GestureModalProps> = ({
             <Dialog.Panel className="gesture-modal-message">
               <div className="gesture-modal-body">
                 <Dialog.Title as="h3" className="gesture-modal-title">
-                  Obsługiwane gesty
+                  Instrukcja
                 </Dialog.Title>
                 <div className="gesture-modal-close">
                   <button
@@ -73,10 +73,32 @@ const GestureModal: React.FC<GestureModalProps> = ({
                   </button>
                 </div>
                 <div className="gesture-modal-description-container">
+                  <p className="gesture-modal-description-instruction">
+                    Kliknij{" "}
+                    <span className="text-green font-semibold">
+                      ikonę nagrywania
+                    </span>{" "}
+                    i spokojnymi, powolnymi ruchami pokazuj gesty z listy. Aby
+                    zakończyć nagrywanie kliknij{" "}
+                    <span className="text-green font-semibold">
+                      przycisk pauzy.
+                    </span>{" "}
+                    Jeśli tego nie zrobisz, nagrywanie zakończy się
+                    automatycznie{" "}
+                    <span className="text-green font-semibold">
+                      po 10 sekundach.
+                    </span>{" "}
+                    Kliknij{" "}
+                    <span className="text-green font-semibold">
+                      przycisk "Analizuj"
+                    </span>
+                    , aby rozpocząć proces przetwarzania filmu na serwerze.
+                    Odpowiedź powinieneś uzyskać po około 30 sekundach.
+                  </p>
                   {gestures.map((gest, index) => (
                     <div className="gest" key={index}>
-                      <p className="gesture-modal-description">{gest.desc}</p>
-                      <img src={gest.image} className="gesture-modal-image" />
+                      <p className="gest-description">{gest.desc}</p>
+                      <img src={gest.image} className="gest-image" />
                     </div>
                   ))}
                 </div>
