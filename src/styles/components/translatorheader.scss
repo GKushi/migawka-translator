@@ -1,0 +1,15 @@
+.translator-header {
+  @apply flex justify-between bg-green  px-8 sm:px-16 py-4 h-[70px];
+  h1 {
+    @apply font-black text-3xl tracking-wider;
+  }
+  .start {
+    @apply flex items-center;
+    span {
+      @apply font-semibold text-base uppercase hidden sm:block;
+    }
+    .icon {
+      @apply w-8;
+    }
+  }
+}
