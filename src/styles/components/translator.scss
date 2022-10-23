@@ -1,0 +1,46 @@
+.translator {
+  height: calc(100% - 70px);
+  @apply text-black flex flex-col md:flex-row-reverse;
+  .webcam-container {
+    @apply h-1/2 md:h-full w-full md:w-2/3 bg-gray-300 relative;
+    .webcam {
+      @apply w-full h-full absolute object-cover;
+    }
+  }
+  .webcam-panel {
+    @apply h-1/2 md:h-full w-full md:w-1/3 p-4 flex flex-col gap-4;
+    h2 {
+      @apply text-xl font-semibold text-center;
+    }
+    &-output {
+      @apply flex-1 border shadow-inner relative flex flex-col justify-end;
+      &-placeholder {
+        @apply text-gray-500 text-sm absolute top-0 left-0;
+      }
+      &-loading {
+        @apply w-20 h-20 mx-auto;
+      }
+      &-response {
+        @apply text-black text-xl;
+      }
+    }
+    &-controls {
+      @apply flex gap-4 justify-center;
+      .icon {
+        @apply w-8 text-gray-700 opacity-30;
+      }
+      .trash {
+        @apply text-red-600;
+      }
+      .icon.active {
+        @apply opacity-100 cursor-pointer;
+      }
+      button {
+        @apply text-green border border-green px-2 py-1 text-sm cursor-default;
+      }
+      button.active {
+        @apply hover:bg-green hover:text-white cursor-pointer;
+      }
+    }
+  }
+}

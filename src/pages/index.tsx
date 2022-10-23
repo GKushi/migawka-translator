@@ -50,8 +50,8 @@ const Home: React.FC = () => {
         <About />
         <Goals />
         <div className="md:space-y-24 my-12">
-          {infoItems.map((it) => (
-            <Info {...it} />
+          {infoItems.map((it, index) => (
+            <Info {...it} key={index} />
           ))}
         </div>
       </main>
