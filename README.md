@@ -1,4 +1,5 @@
 # Migawka
+## 👑 Aplikacja zajęła 3 miejsce w konkursie Hack Heroes 2022! 👑
 <div align='center'>
 <img width="96px" src="./public/fav.svg" />
 
